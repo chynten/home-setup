@@ -13,6 +13,7 @@ export CLOUDFLARE_API_KEY=`echo -n $CLOUDFLARE_API_KEY | base64 -w 0`
 export CLOUDFLARE_API_TOKEN=`echo -n $CLOUDFLARE_API_TOKEN | base64 -w 0`
 export CLOUDFLARE_EMAIL=$CLOUDFLARE_EMAIL
 
+kubectl apply -f cert-bot-namespace.yaml
 envsubst < cloudflair-api-key-secret.yaml | kubectl apply -f -
 envsubst < cloudflair-api-token-secret.yaml | kubectl apply -f -
 envsubst < cluster-issuer.yaml | kubectl apply -f -
