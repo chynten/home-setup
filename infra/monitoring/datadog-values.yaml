@@ -2,9 +2,9 @@ datadog:
   logs:
     enabled: true
     containerCollectAll: true
-    processAgent:
-        enabled: true
-        processCollection: true
+  processAgent:
+    enabled: true
+    processCollection: true
 clusterAgent:
   enabled: true
   resources: 
