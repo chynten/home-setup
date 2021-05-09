@@ -24,7 +24,7 @@ clusterAgent:
           port: 3306
           user: datadog
           pass: ''
-    istio_metrics.yaml: |-
+    istio.yaml: |-
       init_config:
       instances:
         - istiod_endpoint: http://istiod.istio-system:15014/metrics
