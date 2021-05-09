@@ -10,7 +10,7 @@ if ! [ -x "$(command -v tmp/istioctl)" ]; then
   tar -xf tmp/istioctl-$ISTIO_VERSION-linux-amd64.tar.gz -C tmp/
 fi
 echo "---> setting up istio"
-tmp/istioctl install -y -f infra/istio/operator.yaml
+tmp/istioctl install -y -f operator.yaml
 
 export INGRESS_HOST=$(kubectl get po -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].status.hostIP}')
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
