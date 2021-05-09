@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ../../VERSION.sh
+. ../../VERSION.sh
 
 kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/$CERT_BOT_VERSION/cert-manager.crds.yaml
 kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/$CERT_BOT_VERSION/cert-manager.yaml
