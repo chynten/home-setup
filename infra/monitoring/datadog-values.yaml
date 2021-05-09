@@ -17,11 +17,11 @@ clusterAgent:
       cpu: 200m
       memory: 256Mi
   confd:
-   - mysql.yaml: |-
+   mysql.yaml: |-
      cluster_check: true
      instances:
        - server: 'mysql.mysql'
          port: 3306
          user: datadog
          pass: ''
-   - istiod_endpoint: http://istiod.istio-system:15014/metrics
+   istiod_endpoint: http://istiod.istio-system:15014/metrics
