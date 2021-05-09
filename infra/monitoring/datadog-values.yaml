@@ -5,6 +5,8 @@ datadog:
   processAgent:
     enabled: true
     processCollection: true
+  networkMonitoring:
+    enabled: true
 clusterAgent:
   enabled: true
   resources: 
