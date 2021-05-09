@@ -2,9 +2,9 @@
 echo "---> stopping all conatainers"
 sudo docker stop $(sudo docker ps -aq)
 echo "---> removing all conatainers"
-sudo docker rm $(sudo docker ps -a)
+sudo docker rm $(sudo docker ps -aq)
 echo "---> removing all conatainer images"
-sudo docker rmi $(sudo docker images -a)
+sudo docker rmi $(sudo docker images -aq)
 
 echo "---> removing istio tmp folder"
 sudo rm -r infra/istio/tmp
