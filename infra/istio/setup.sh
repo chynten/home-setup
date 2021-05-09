@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source ../../VERSION.sh
+. ../../VERSION.sh
+
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 if ! [ -x "$(command -v tmp/istioctl)" ]; then
   echo "---> Downloading istio binaries..."

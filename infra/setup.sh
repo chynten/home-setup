@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ../VERSION.sh
+. ../VERSION.sh
 echo "---> Home setup"
 
 if ! [ -x "$(command -v docker)" ]; then
