@@ -1,0 +1,24 @@
+datadog:
+  logs:
+    enabled: true
+    containerCollectAll: true
+    processAgent:
+        enabled: true
+        processCollection: true
+clusterAgent:
+  enabled: true
+  resources: 
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+  confd:
+   mysql.yaml: |-
+     cluster_check: true
+     instances:
+       - server: 'mysql.mysql'
+         port: 3306
+         user: datadog
+         pass: ''

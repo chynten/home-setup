@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt
+  namespace: cert-bot
+  labels:
+    app.kubernetes.io/name: cert-bot
+    app.kubernetes.io/instance: cert-bot-prod
+    app.kubernetes.io/version: "5.7.21"
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: wordpress
+    app.kubernetes.io/managed-by: helm
+    app.kubernetes.io/created-by: controller-manager
+spec:
+  acme:
+    email: chintanpatel.it@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    preferredChain: "DST Root CA X3"
+    privateKeySecretRef:
+      name: chynten-com-account-key
+    solvers:
+      - dns01:
+          cloudflare:
+            email: ${CLOUDFLARE_EMAIL}
+            apiKeySecretRef:
+              name: cloudflare-api-key-secret
+              key: api-key

@@ -1,0 +1,7 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: cert-bot
+  labels:
+    istio-injection: enabled
+    app.kubernetes.io/name: cert-bot
