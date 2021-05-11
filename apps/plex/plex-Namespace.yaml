@@ -6,7 +6,7 @@ metadata:
     istio-injection: enabled
     app-name: plex
     version: ${PLEX_VERSION}
-    component: "Media Server"
+    component: media-server
     hostNetwork: "yes"
     internal-service: "no"
     managed-by: chynten
