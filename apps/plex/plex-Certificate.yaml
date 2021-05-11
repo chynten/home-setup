@@ -16,5 +16,6 @@ spec:
     - '$PLEX_DOMAIN'
   issuerRef:
     kind: Issuer
-    name: letsencrypt.cert-manager
+    name: letsencrypt
+    namespace: cert-manager
   secretName: plex-letsencrypt-certificate
