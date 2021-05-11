@@ -25,13 +25,11 @@ spec:
         app-name: plex
     spec:
       hostNetwork: true
-      securityContext:
-        {}
+      restartPolicy: Always
       containers:
         - name: plex
           image: ${PLEX_IMAGE}:${PLEX_VERSION}
           imagePullPolicy: IfNotPresent
-          restartPolicy: Always
           securityContext:
             privileged: false
           resources:
@@ -77,6 +75,8 @@ spec:
             mountPath: /movies
           - name: config
             mountPath: /config
+      securityContext:
+        {}
       volumes:
       - name: data
         persistentVolumeClaim:
