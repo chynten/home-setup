@@ -14,6 +14,8 @@ metadata:
     created-by: chynten
 spec:
   volumeMode: Filesystem
+  capacity:
+    storage: 5Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
@@ -47,6 +49,8 @@ metadata:
     managed-by: chynten
     created-by: chynten
 spec:
+  capacity:
+    storage: 2Ti
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
