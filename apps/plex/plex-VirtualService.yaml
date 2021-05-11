@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: plex-vs
+  namespace: plex
+  labels:
+    app-name: plex
+    version: ${PLEX_VERSION}
+    component: "Media Server"
+    hostNetwork: "yes"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  hosts:
+  - ${PLEX_DOMAIN}
+  gateways:
+  - plex-gateway
+  http:
+  - route:
+    - destination:
+        host: plex-svc.plex.svc.cluster.local
+        port:
+          number: 32400

@@ -7,3 +7,6 @@ export ISTIO_VERSION=1.10.0-rc.1
 export CERT_BOT_VERSION=v1.3.1
 
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
+export PLEX_IMAGE=ghcr.io/linuxserver/plex
+export PLEX_VERSION=version-1.22.3.4392-d7c624def

@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex-deployment
+  namespace: plex
+  labels:
+    app-name: plex
+    version: ${PLEX_VERSION}
+    component: "Media Server"
+    hostNetwork: "yes"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: plex
+  template:
+    metadata:
+      labels:
+        app-name: plex
+    spec:
+      hostNetwork: true
+      securityContext:
+        privileged: false
+      containers:
+        - name: plex
+          image: ${PLEX_IMAGE}:${PLEX_VERSION}
+          imagePullPolicy: IfNotPresent
+          restartPolicy: Always
+          securityContext:
+            privileged: false
+          resources:
+            limits:
+              cpu: "1"
+              memory: "2048Mi"
+            requests:
+              cpu: "500m"
+              memory: "1024Mi"
+          env:
+          - name: PUID
+            value: "1000"
+          - name: PGID
+            value: "1000"
+          - name: VERSION
+            value: docker
+          - name: PLEX_CLAIM
+            valueFrom:
+              secretKeyRef:
+                name: plex-secret
+                key: claim-ref
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            failureThreshold: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            failureThreshold: 5
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            failureThreshold: 30            
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          volumeMounts:
+          - name: data
+            mountPath: /movies
+          - name: config
+            mountPath: /config
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: plex-data-pvc
+      - name: config
+        persistentVolumeClaim:
+          claimName: plex-config-pvc

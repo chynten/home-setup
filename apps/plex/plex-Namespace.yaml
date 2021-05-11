@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: plex
+  labels:
+    istio-injection: enabled
+    app-name: plex
+    version: ${PLEX_VERSION}
+    component: "Media Server"
+    hostNetwork: "yes"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten

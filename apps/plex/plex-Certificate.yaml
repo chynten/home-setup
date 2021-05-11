@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: plex-certificate
+  namespace: plex
+  labels:
+    app-name: plex
+    version: ${PLEX_VERSION}
+    component: "Media Server"
+    hostNetwork: "yes"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  dnsNames:
+    - '$PLEX_DOMAIN'
+  issuerRef:
+    kind: Issuer
+    name: letsencrypt.cert-manager
+  secretName: plex-letsencrypt-certificate

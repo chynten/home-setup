@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: plex-gateway
+  namespace: plex
+  labels:
+    app-name: plex
+    version: ${PLEX_VERSION}
+    component: "Media Server"
+    hostNetwork: "yes"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - $PLEX_DOMAIN
+    tls:
+      httpsRedirect: true
+  - hosts:
+    - $PLEX_DOMAIN
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: plex-letsencrypt-certificate
+

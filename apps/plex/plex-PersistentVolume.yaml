@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: plex-config-pv
+  finalizers: []
+  namespace: plex
+  labels:
+    app-name: plex
+    version: ${PLEX_VERSION}
+    component: "Media Server"
+    hostNetwork: "yes"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage-class
+  claimRef:
+    name: plex-config-pvc
+    namespace: plex
+  local:
+    path: $PLEX_CONFIG_DIR
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - $NODE_NAME
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: plex-data-pv
+  finalizers: []
+  namespace: plex
+  labels:
+    app-name: plex
+    version: ${PLEX_VERSION}
+    component: "Media Server"
+    hostNetwork: "yes"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage-class
+  claimRef:
+    name: plex-data-pvc
+    namespace: plex
+  local:
+    path: $PLEX_MEDIA_DIR
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - $NODE_NAME
