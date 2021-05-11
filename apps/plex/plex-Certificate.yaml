@@ -15,7 +15,6 @@ spec:
   dnsNames:
     - '$PLEX_DOMAIN'
   issuerRef:
-    kind: Issuer
+    kind: ClusterIssuer
     name: letsencrypt
-    namespace: cert-manager
   secretName: plex-letsencrypt-certificate
