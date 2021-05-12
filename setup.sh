@@ -3,5 +3,5 @@
 cd ./infra
 sh ./setup.sh
 
-cd ./apps
+cd ../apps
 sh ./setup.sh
