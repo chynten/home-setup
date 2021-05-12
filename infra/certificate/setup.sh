@@ -12,4 +12,5 @@ export CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN
 export CLOUDFLARE_EMAIL=$CLOUDFLARE_EMAIL
 
 envsubst < cloudflair-api-token-secret.yaml | kubectl apply -f -
+sleep 5
 envsubst < cluster-issuer.yaml | kubectl apply -f -
