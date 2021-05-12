@@ -2,9 +2,6 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt
-  namespace: cert-manager
-  labels:
-    app.kubernetes.io/name: cert-manager
 spec:
   acme:
     email: chintanpatel.it@gmail.com
@@ -16,6 +13,6 @@ spec:
       - dns01:
           cloudflare:
             email: ${CLOUDFLARE_EMAIL}
-            apiTokenSecretRef:
+            apiKeySecretRef:
               name: cloudflare-api-token-secret
               key: api-token

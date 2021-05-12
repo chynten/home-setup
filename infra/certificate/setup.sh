@@ -11,6 +11,5 @@ read -p "Cloudflair email: " CLOUDFLARE_EMAIL
 export CLOUDFLARE_API_TOKEN=`echo -n $CLOUDFLARE_API_TOKEN | base64 -w 0`
 export CLOUDFLARE_EMAIL=$CLOUDFLARE_EMAIL
 
-envsubst < cloudflair-api-key-secret.yaml | kubectl apply -f -
 envsubst < cloudflair-api-token-secret.yaml | kubectl apply -f -
 envsubst < cluster-issuer.yaml | kubectl apply -f -
