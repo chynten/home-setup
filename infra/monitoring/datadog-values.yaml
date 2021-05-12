@@ -28,4 +28,8 @@ clusterAgent:
       init_config:
       instances:
         - istiod_endpoint: http://istiod.istio-system:15014/metrics
+    envoy.yaml: |-
+      init_config:
+      instances:
+        - stats_url: http://localhost:80/stats
     
