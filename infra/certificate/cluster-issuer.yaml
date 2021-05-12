@@ -4,7 +4,7 @@ metadata:
   name: letsencrypt
 spec:
   acme:
-    email: chintanpatel.it@gmail.com
+    email: ${CLOUDFLARE_EMAIL}
     server: https://acme-v02.api.letsencrypt.org/directory
     preferredChain: "DST Root CA X3"
     privateKeySecretRef:
@@ -13,6 +13,6 @@ spec:
       - dns01:
           cloudflare:
             email: ${CLOUDFLARE_EMAIL}
-            apiKeySecretRef:
+            apiTokenSecretRef:
               name: cloudflare-api-token-secret
               key: api-token

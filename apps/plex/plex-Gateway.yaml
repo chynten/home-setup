@@ -24,12 +24,12 @@ spec:
     tls:
       httpsRedirect: true
   - hosts:
-    - $PLEX_DOMAIN
+      - $PLEX_DOMAIN
     port:
       name: https
       number: 443
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: plex-letsencrypt-certificate
+      credentialName: plex/plex-letsencrypt-certificate
 
