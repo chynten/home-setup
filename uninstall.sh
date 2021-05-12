@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "---> killing all conatainers"
+sudo docker kill $(sudo docker ps -aq)
 echo "---> stopping all conatainers"
 sudo docker stop $(sudo docker ps -aq)
 echo "---> removing all conatainers"
