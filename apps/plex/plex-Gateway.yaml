@@ -31,5 +31,5 @@ spec:
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: plex/plex-letsencrypt-certificate
+      credentialName: plex-letsencrypt-certificate
 
