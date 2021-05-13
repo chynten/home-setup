@@ -41,19 +41,23 @@ if ! [ $(kubectl get ns istio-system -o jsonpath --template={.status.phase}) = '
 then
 	cd ./istio
 	sh ./setup.sh
+	cd ..
 fi
 
-cd ../monitoring
+cd ./monitoring
 sh ./setup.sh
+cd ..
 
 if [ -z $(kubectl get storageclass local-storage-class -o jsonpath --template={.metadata.uid}) ];
 then
-	cd ../storage
+	cd ./storage
 	sh ./setup.sh
+	cd ..
 fi
 
 if ! [ $(kubectl get ns cert-manager -o jsonpath --template={.status.phase}) = 'Active' ];
 then
-	cd ../certificate
+	cd ./certificate
 	sh ./setup.sh
+	cd ..
 fi
