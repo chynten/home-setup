@@ -8,3 +8,7 @@ metadata:
 data:
   initdb.sql: |-
     CREATE USER 'datadog'@'%' IDENTIFIED WITH mysql_native_password by '${DATADOG_MYSQL_PASSWORD}';
+    GRANT PROCESS ON *.* TO 'datadog'@'%';
+    ALTER USER 'datadog'@'%' WITH MAX_USER_CONNECTIONS 5;
+    GRANT SELECT ON performance_schema.* TO 'datadog'@'%';
+    FLUSH PRIVILEGES;
