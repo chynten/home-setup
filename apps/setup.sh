@@ -6,12 +6,12 @@ export NODE_NAME=$NODE_NAME
 read -p "Do you wish to install plex (y/n)?" yn
 
 case $yn in
-    Yes )
+    y )
         cd plex
         sh ./setup.sh
         cd ..
         ;;
-    No ) 
+    n ) 
         return
         ;;
 esac
@@ -19,11 +19,11 @@ esac
 read -p "Do you wish to install nextcloud (y/n)?" yn
 
 case $yn in
-    Yes )
+    y )
         cd mysql
         sh ./setup.sh
         ;;
-    No ) 
+    n ) 
         return
         ;;
 esac
