@@ -11,9 +11,6 @@ case $yn in
         sh ./setup.sh
         cd ..
         ;;
-    n ) 
-        return
-        ;;
 esac
 
 read -p "Do you wish to install nextcloud (y/n)?" yn
@@ -22,8 +19,5 @@ case $yn in
     y )
         cd mysql
         sh ./setup.sh
-        ;;
-    n ) 
-        return
         ;;
 esac
