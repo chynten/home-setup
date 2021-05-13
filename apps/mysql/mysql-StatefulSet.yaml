@@ -25,6 +25,7 @@ spec:
       containers:
         - name: mysql
           image: ${MYSQL_IMAGE}:${MYSQL_VERSION}
+          args: ["--default-authentication-plugin=mysql_native_password"]
           resources:
             requests:
               cpu: "1"
