@@ -11,7 +11,7 @@ helm repo add stable https://charts.helm.sh/stable
 helm repo update
 kubectl create namespace monitoring
 kubectl label namespace monitoring istio-injection=enabled
-helm upgrade datadog --install --namespace monitoring -f datadog-values.yaml --set datadog.site='datadoghq.eu' --set datadog.apiKey=$DATADOG_API_KEY datadog/datadog 
+envsubst < datadog-values.yaml | helm upgrade datadog --install --namespace monitoring --set datadog.site='datadoghq.eu' --set datadog.apiKey=$DATADOG_API_KEY datadog/datadog -f -
 
 kubectl label namespaces monitoring version=$(kubectl get daemonset datadog -n monitoring -o go-template=$'{{index .metadata.labels "helm.sh/chart"}}')
 kubectl label namespaces monitoring component='monitoring'
