@@ -3,8 +3,8 @@
 read -p "Node Name (If multiple, then give node name which has local storage):" NODE_NAME
 export NODE_NAME=$NODE_NAME
 
-echo "Do you wish to install plex?"
-select yn in "Yes" "No"
+read -p "Do you wish to install plex (y/n)?" yn
+
 case $yn in
     Yes )
         cd plex
@@ -16,9 +16,8 @@ case $yn in
         ;;
 esac
 
+read -p "Do you wish to install nextcloud (y/n)?" yn
 
-echo "Do you wish to install Nextcloud?"
-select yn in "Yes" "No"
 case $yn in
     Yes )
         cd mysql
