@@ -37,14 +37,23 @@ do
   echo "---> Trying again to get nodes..."
 done
 
-cd ./istio
-sh ./setup.sh
+if ! [ $(kubectl get ns istio-system -o jsonpath --template={.status.phase}) = 'Active' ];
+then
+	cd ./istio
+	sh ./setup.sh
+fi
 
 cd ../monitoring
 sh ./setup.sh
 
-cd ../storage
-sh ./setup.sh
+if [ -z $(kubectl get storageclass local-storage-class -o jsonpath --template={.metadata.uid}) ];
+then
+	cd ../storage
+	sh ./setup.sh
+fi
 
-cd ../certificate
-sh ./setup.sh
+if ! [ $(kubectl get ns cert-manager -o jsonpath --template={.status.phase}) = 'Active' ];
+then
+	cd ../certificate
+	sh ./setup.sh
+fi

@@ -23,7 +23,7 @@ clusterAgent:
         - server: 'mysql.mysql'
           port: 3306
           user: datadog
-          pass: ''
+          pass: '${DATADOG_MYSQL_PASSWORD}'
     istio.yaml: |-
       init_config:
       instances:

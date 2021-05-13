@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb
+  namespace: mysql
+  labels:
+    app.kubernetes.io/name: mysql
+data:
+  initdb.sql: |-
+    CREATE USER 'datadog'@'%' IDENTIFIED WITH mysql_native_password by '${DATADOG_MYSQL_PASSWORD}';

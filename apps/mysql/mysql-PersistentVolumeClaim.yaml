@@ -1,0 +1,22 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mysql-data-pvc
+  finalizers: []
+  namespace: mysql
+  labels:
+    app-name: mysql
+    version: ${MYSQL_VERSION}
+    component: database-server
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: "mysql-data-pv"

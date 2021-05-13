@@ -10,3 +10,6 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 export PLEX_IMAGE=ghcr.io/linuxserver/plex
 export PLEX_VERSION=version-1.22.3.4392-d7c624def
+
+export MYSQL_IMAGE=mysql
+export MYSQL_VERSION=8.0.25
