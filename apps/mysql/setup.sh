@@ -12,13 +12,13 @@ sudo chmod 777 MYSQL_CONFIG_DIR
 export ROOT_PASSWORD='echo -n $ROOT_PASSWORD | base64 -w 0'
 export DATADOG_MYSQL_PASSWORD=$DATADOG_MYSQL_PASSWORD
 
-envsubst < apps/mysql/mysql-Namespace.yaml | kubectl apply -f -
+envsubst < mysql-Namespace.yaml | kubectl apply -f -
 
-envsubst < apps/mysql/mysql-Secret.yaml | kubectl apply -f -
-envsubst < apps/mysql/mysql-ConfigMap.yaml | kubectl apply -f -
+envsubst < mysql-Secret.yaml | kubectl apply -f -
+envsubst < mysql-ConfigMap.yaml | kubectl apply -f -
 
-envsubst < apps/mysql/mysql-PersistentVolume.yaml | kubectl apply -f -
-envsubst < apps/mysql/mysql-PersistentVolumeClaim.yaml | kubectl apply -f -
+envsubst < mysql-PersistentVolume.yaml | kubectl apply -f -
+envsubst < mysql-PersistentVolumeClaim.yaml | kubectl apply -f -
 
-envsubst < apps/mysql/mysql-Service.yaml | kubectl apply -f -
-envsubst < apps/mysql/mysql-StatefulSet.yaml | kubectl apply -f -
+envsubst < mysql-Service.yaml | kubectl apply -f -
+envsubst < mysql-StatefulSet.yaml | kubectl apply -f -
