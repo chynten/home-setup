@@ -4,9 +4,9 @@
 
 read -p "Nextcloud Domain: " NEXTCLOUD_DOMAIN
 
-read -p "Nextcloud config directory" NEXTCLOUD_CONFIG_DIR
-read -p "Nextcloud data directory" NEXTCLOUD_DATA_DIR
-read -p "Nextcloud database password" NEXTCLOUD_PASSWORD
+read -p "Nextcloud config directory: " NEXTCLOUD_CONFIG_DIR
+read -p "Nextcloud data directory: " NEXTCLOUD_DATA_DIR
+read -p "Nextcloud database password: " NEXTCLOUD_PASSWORD
 
 export NEXTCLOUD_DOMAIN=$NEXTCLOUD_DOMAIN
 export NEXTCLOUD_CONFIG_DIR=$NEXTCLOUD_CONFIG_DIR
