@@ -28,10 +28,10 @@ spec:
         image: ${NEXTCLOUD_IMAGE}:${NEXTCLOUD_VERSION}
         imagePullPolicy: IfNotPresent
         resources:
-          limits:
+          requests:
             cpu: 100m
             memory: "256Mi"
-          requests:
+          limits:
             cpu: 500m
             memory: "512Mi"
         env:
