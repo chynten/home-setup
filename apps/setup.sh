@@ -17,9 +17,12 @@ read -p "Do you wish to install nextcloud (y/n)?" yn
 
 case $yn in
     y )
-        cd mysql
-        sh ./setup.sh
-        cd ..
+        if ! [ $(kubectl get ns mysql -o jsonpath --template={.status.phase}) = 'Active' ];
+        then
+            cd mysql
+            sh ./setup.sh
+            cd ..
+        fi
         cd files
         sh ./setup.sh
         ;;
