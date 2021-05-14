@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: nextcloud-certificate
+  namespace: istio-system
+  labels:
+    app-name: nextcloud
+    version: "${NEXTCLOUD_VERSION}"
+    component: cloud-file-server
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  dnsNames:
+    - '$NEXTCLOUD_DOMAIN'
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  secretName: nextcloud-letsencrypt-certificate

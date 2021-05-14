@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextcloud-svc
+  namespace: nextcloud
+  labels:
+    app-name: nextcloud
+    version: "${NEXTCLOUD_VERSION}"
+    component: cloud-file-server
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9000
+      targetPort: 80
+      name: tcp
+  selector:
+    app-name: nextcloud

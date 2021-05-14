@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql
+  name: mysql-statefuleset
   namespace: mysql
   labels:
     app-name: mysql
@@ -16,7 +16,7 @@ spec:
   selector:
     matchLabels:
       app-name: mysql
-  serviceName: mysql
+  serviceName: mysql-svc
   template:
     metadata:
       labels:
@@ -35,8 +35,26 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql
+                  name: mysql-secret
                   key: mysql-root-password
+          livenessProbe:
+            exec:
+              command: ["mysqladmin", "ping", "-u", "root", "-p$MYSQL_ROOT_PASSWORD"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            exec:
+              command: ["mysql", "-u", "root", "-p$MYSQL_ROOT_PASSWORD", "-e", "SELECT 1"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+          startupProbe:
+            exec:
+              command: ["mysql", "-u", "root", "-p$MYSQL_ROOT_PASSWORD", "-e", "SELECT 1"]
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 10
           ports:
             - name: mysql
               containerPort: 3306

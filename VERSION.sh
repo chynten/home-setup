@@ -13,3 +13,6 @@ export PLEX_VERSION=version-1.22.3.4392-d7c624def
 
 export MYSQL_IMAGE=mysql
 export MYSQL_VERSION=8.0.25
+
+export NEXTCLOUD_IMAGE=nextcloud
+export NEXTCLOUD_VERSION=21.0.1-apache

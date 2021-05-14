@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nextcloud
+  labels:
+    istio-injection: enabled
+    app-name: nextcloud
+    version: "${NEXTCLOUD_VERSION}"
+    component: cloud-file-server
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten

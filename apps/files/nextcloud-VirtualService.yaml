@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: nextcloud-vs
+  namespace: nextcloud
+  labels:
+    app-name: nextcloud
+    version: "${NEXTCLOUD_VERSION}"
+    component: cloud-file-server
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  hosts:
+  - "${NEXTCLOUD_DOMAIN}"
+  gateways:
+  - istio-system/public-gateway
+  http:
+  - route:
+    - destination:
+        host: nextcloud-svc.nextcloud.svc.cluster.local
+        port:
+          number: 9000

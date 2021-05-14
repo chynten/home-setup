@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextcloud
+  namespace: nextcloud
+  labels:
+    app-name: nextcloud
+    version: "${NEXTCLOUD_VERSION}"
+    component: cloud-file-server
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: nextcloud
+  template:
+    metadata:
+      labels:
+        app-name: nextcloud
+    spec:
+      containers:
+      - name: nextcloud
+        image: ${NEXTCLOUD_IMAGE}:${NEXTCLOUD_VERSION}
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 100m
+            memory: "256Mi"
+          requests:
+            cpu: 500m
+            memory: "512Mi"
+        env:
+        - name: PUID
+          value: "10000"
+        - name: PGID
+          value: "10000"
+        - name: TZ
+          value: "UTC"
+        - name: NEXTCLOUD_DATA_DIR
+          value: /data
+        ports:
+        - name: http
+          containerPort: 443
+          protocol: TCP
+        volumeMounts:
+        - name: nextcloud-www
+          mountPath: /var/www/html
+        - name: nextcloud-data
+          mountPath: /data
+      volumes:
+      - name: nextcloud-www
+        persistentVolumeClaim:
+          claimName: nextcloud-config-pvc
+      - name: nextcloud-data
+        persistentVolumeClaim:
+          claimName: nextcloud-data-pvc
+      securityContext:
+        fsGroup: 33

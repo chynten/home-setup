@@ -1,0 +1,37 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nextcloud-data-pvc
+  finalizers: []
+  namespace: nextcloud
+  labels:
+    app-name: nextcloud
+    version: "${NEXTCLOUD_VERSION}"
+    component: cloud-file-server
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 100Gi
+  volumeName: "nextcloud-data-pv"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nextcloud-config-pvc
+  finalizers: []
+  namespace: nextcloud
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: "nextcloud-config-pv"
