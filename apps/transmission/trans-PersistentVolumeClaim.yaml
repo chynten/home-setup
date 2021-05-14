@@ -1,0 +1,37 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: transmission-config-pvc
+  finalizers: null
+  namespace: transmission
+  labels:
+    app-name: transmission
+    version: "${TRANSMISSION_VERSION}"
+    component: torrent-download-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: "transmission-config-pv"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: transmission-data-pvc
+  finalizers: null
+  namespace: transmission
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 100Gi
+  volumeName: "transmission-data-pv"

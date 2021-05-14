@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: transmission-certificate
+  namespace: istio-system
+  labels:
+    app-name: transmission
+    version: "${TRANSMISSION_VERSION}"
+    component: torrent-download-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  dnsNames:
+    - '$TRANSMISSION_DOMAIN'
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  secretName: trans-letsencrypt-certificate

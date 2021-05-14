@@ -20,7 +20,7 @@ clusterAgent:
     mysql.yaml: |-
       cluster_check: true
       instances:
-        - server: 'mysql.mysql'
+        - server: 'mysql-svc.mysql'
           port: 3306
           user: datadog
           pass: '${DATADOG_MYSQL_PASSWORD}'

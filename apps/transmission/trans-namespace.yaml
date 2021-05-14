@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: transmission
+  labels:
+    istio-injection: enabled
+    app-name: transmission
+    version: "${TRANSMISSION_VERSION}"
+    component: torrent-download-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten

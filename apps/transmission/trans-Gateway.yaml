@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: transmission-gateway
+  namespace: transmission
+  labels:
+    app-name: transmission
+    version: "${TRANSMISSION_VERSION}"
+    component: torrent-download-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - $TRANSMISSION_DOMAIN
+    tls:
+      httpsRedirect: true
+  - hosts:
+      - $TRANSMISSION_DOMAIN
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: trans-letsencrypt-certificate
+

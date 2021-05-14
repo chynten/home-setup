@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transmission-deployment
+  namespace: transmission
+  labels:
+    app-name: transmission
+    version: "${TRANSMISSION_VERSION}"
+    component: torrent-download-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app-name: transmission
+  template:
+    metadata:
+      name: transmission
+      labels:
+        app-name: transmission
+    spec:
+      containers:
+        - name: transmission
+          image: ${TRANSMISSION_IMAGE}:${TRANSMISSION_VERSION}
+          env:
+          - name: PUID
+            value: "1000"
+          - name: PGID
+            value: "1000"
+          - name: TZ
+            value: "UTC"
+          - name: TRANSMISSION_WEB_HOME
+            value: "/combustion-release/"
+          - name: USER
+            valueFrom:
+              secretKeyRef:
+                name: transmission-secret
+                key: transmission-username
+          - name: PASS
+            valueFrom:
+              secretKeyRef:
+                name: transmission-secret
+                key: transmission-password
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /downloads
+              name: data
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 600m
+            requests:
+              memory: 200Mi
+              cpu: 200m
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: transmission-config-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: transmission-data-pvc

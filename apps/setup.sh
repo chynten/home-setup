@@ -25,5 +25,15 @@ case $yn in
         fi
         cd files
         sh ./setup.sh
+        cd ..
+        ;;
+esac
+
+read -p "Do you wish to install transmission (y/n)?" yn
+case $yn in
+    y )
+        cd tranmission
+        sh ./setup.sh
+        cd ..
         ;;
 esac

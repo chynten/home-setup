@@ -16,3 +16,6 @@ export MYSQL_VERSION=8.0.25
 
 export NEXTCLOUD_IMAGE=nextcloud
 export NEXTCLOUD_VERSION=21.0.1-apache
+
+export TRANSMISSION_IMAGE=ghcr.io/linuxserver/transmission
+export TRANSMISSION_VERSION=3.00-r2-ls86
