@@ -32,7 +32,7 @@ esac
 read -p "Do you wish to install transmission (y/n)?" yn
 case $yn in
     y )
-        cd tranmission
+        cd transmission
         sh ./setup.sh
         cd ..
         ;;
