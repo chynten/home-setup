@@ -20,7 +20,7 @@ case $yn in
         cd mysql
         sh ./setup.sh
         cd ..
-        cd nextcloud
+        cd files
         sh ./setup.sh
         ;;
 esac
