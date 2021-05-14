@@ -15,7 +15,7 @@ spec:
   hosts:
   - "${NEXTCLOUD_DOMAIN}"
   gateways:
-  - istio-system/public-gateway
+  - nextcloud-gateway
   http:
   - route:
     - destination:
