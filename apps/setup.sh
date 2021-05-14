@@ -19,5 +19,8 @@ case $yn in
     y )
         cd mysql
         sh ./setup.sh
+        cd ..
+        cd nextcloud
+        sh ./setup.sh
         ;;
 esac
