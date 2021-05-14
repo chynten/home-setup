@@ -37,24 +37,24 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: mysql-root-password
-#          livenessProbe:
-#            exec:
-#              command: ["mysqladmin", "ping", "-u", "root", "-p$MYSQL_ROOT_PASSWORD"]
-#            initialDelaySeconds: 30
-#            periodSeconds: 10
-#            timeoutSeconds: 5
-#          readinessProbe:
-#            exec:
-#              command: ["mysql", "-u", "root", "-p$MYSQL_ROOT_PASSWORD", "-e", "SELECT 1"]
-#            initialDelaySeconds: 5
-#            periodSeconds: 5
-#            timeoutSeconds: 5
-#          startupProbe:
-#            exec:
-#              command: ["mysql", "-u", "root", "-p$MYSQL_ROOT_PASSWORD", "-e", "SELECT 1"]
-#            initialDelaySeconds: 30
-#            periodSeconds: 5
-#            timeoutSeconds: 10
+          livenessProbe:
+            exec:
+              command: ["mysqladmin", "ping", "-u", "root", "-p$ROOT_PASSWORD"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            exec:
+              command: ["mysql", "-u", "root", "-p$ROOT_PASSWORD", "-e", "SELECT 1"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+          startupProbe:
+            exec:
+              command: ["mysql", "-u", "root", "-p$ROOT_PASSWORD", "-e", "SELECT 1"]
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 10
           ports:
             - name: mysql
               containerPort: 3306
