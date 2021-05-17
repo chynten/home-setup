@@ -37,3 +37,12 @@ case $yn in
         cd ..
         ;;
 esac
+
+read -p "Do you wish to install keycloak (y/n)?" yn
+case $yn in
+    y )
+        cd sso
+        sh ./setup.sh
+        cd ..
+        ;;
+esac
