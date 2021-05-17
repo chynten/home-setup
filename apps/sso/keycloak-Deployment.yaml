@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: keycloak
+  labels:
+    app-name: keycloak
+    version: "${KEYCLOAK_VERSION}"
+    component: sso-server
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: keycloak
+  template:
+    metadata:
+      labels:
+        app-name: keycloak
+    spec:
+      containers:
+      - name: keycloak
+        image: ${KEYCLOAK_IMAGE}:${KEYCLOAK_VERSION}
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: "256Mi"
+          limits:
+            cpu: 500m
+            memory: "512Mi"
+        env:
+        - name: DB_VENDOR
+          value: MYSQL
+        - name: DB_ADDR
+          value: mysql-svc.mysql.svc.cluster.local
+        - name: DB_DATABASE
+          value: keycloak
+        - name: DB_USER
+          value: keycloak
+        - name: KEYCLOAK_USER
+          value: admin
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-secret
+              key: keycloak-db-password
+        - name: KEYCLOAK_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-secret
+              key: keycloak-password
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+      securityContext:
+        fsGroup: 33

@@ -13,9 +13,9 @@ metadata:
     created-by: chynten
 spec:
   hosts:
-    - trans.int.chynten.com
-  gateways:
     - '$TRANSMISSION_DOMAIN'
+  gateways:
+    - transmission-gateway
   http:
     - route:
         - destination:

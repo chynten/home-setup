@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: keycloak-gateway
+  namespace: keycloak
+  labels:
+    app-name: keycloak
+    version: "${KEYCLOAK_VERSION}"
+    component: sso-server
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - $KEYCLOAK_DOMAIN
+    tls:
+      httpsRedirect: true
+  - hosts:
+      - $KEYCLOAK_DOMAIN
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: keycloak-letsencrypt-certificate
+

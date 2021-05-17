@@ -19,14 +19,14 @@ sudo chmod 777 $NEXTCLOUD_DATA_DIR
 sudo mkdir -p $NEXTCLOUD_CONFIG_DIR
 sudo chmod 777 $NEXTCLOUD_CONFIG_DIR
 
-envsubst < nextcloud-Namespace.yaml | kubectl apply -f -
-
-kubectl run mysql-client --image=$MYSQL_IMAGE:$MYSQL_VERSION --namespace nextcloud -i --env="NEXTCLOUD_PASSWORD=${NEXTCLOUD_PASSWORD}" --env="ROOT_PASSWORD=${ROOT_PASSWORD}" --rm --restart=Never -- mysql -h mysql-svc.mysql -u root -p$ROOT_PASSWORD <<EOF
+kubectl exec --stdin --tty mysql-statefuleset-0 -n mysql -- mysql -u root -p$ROOT_PASSWORD <<EOF
     CREATE DATABASE IF NOT EXISTS nextcloud;
     CREATE USER IF NOT EXISTS 'nextcloud'@'%' IDENTIFIED WITH mysql_native_password by '${NEXTCLOUD_PASSWORD}';
     GRANT ALL privileges ON nextcloud.* TO 'nextcloud'@'%';
     FLUSH PRIVILEGES;
 EOF
+
+envsubst < nextcloud-Namespace.yaml | kubectl apply -f -
 
 envsubst < nextcloud-Certificate.yaml | kubectl apply -f -
 envsubst < nextcloud-Gateway.yaml | kubectl apply -f -

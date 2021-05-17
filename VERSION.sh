@@ -19,3 +19,6 @@ export NEXTCLOUD_VERSION=21.0.1-apache
 
 export TRANSMISSION_IMAGE=ghcr.io/linuxserver/transmission
 export TRANSMISSION_VERSION=3.00-r2-ls86
+
+export KEYCLOAK_IMAGE=quay.io/keycloak/keycloak
+export KEYCLOAK_VERSION=13.0.0

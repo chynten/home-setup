@@ -14,7 +14,7 @@ fi
 
 if ! [ -x "$(command -v k3s)" ]; then
   echo "---> Setting up Kubernetes"
-  curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 --disable traefik --docker --disable local-path
+  curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 --docker --disable traefik,local-storage,metrics-server
   export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 fi
 
