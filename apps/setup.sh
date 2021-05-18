@@ -22,6 +22,9 @@ case $yn in
             cd mysql
             sh ./setup.sh
             cd ..
+            cd db-client
+            sh ./setup.sh
+            cd ..
         fi
         cd files
         sh ./setup.sh
