@@ -33,6 +33,6 @@ spec:
             - name: config
               mountPath: /opt/cloudbeaver/workspace
       volumes:
-        - name: config
-          configMap:
-            name: cloudbeaver-config-pvc
+      - name: config
+        persistentVolumeClaim:
+          name: cloudbeaver-config-pvc
