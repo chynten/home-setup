@@ -45,6 +45,8 @@ spec:
           value: keycloak
         - name: KEYCLOAK_USER
           value: admin
+        - name: PROXY_ADRESS_FORWARDING
+          value: "true"
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
