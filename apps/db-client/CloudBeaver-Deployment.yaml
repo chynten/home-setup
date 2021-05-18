@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudbeaver-deployment
+  namespace: mysql
+  labels:
+    app-name: CloudBeaver
+    version: ${CLOUDBEAVER_VERSION}
+    component: database-client-
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app-name: CloudBeaver
+  template:
+    metadata:
+      labels:
+        app-name: CloudBeaver
+    spec:
+      containers:
+        - name: cloudbeaver
+          image: ${CLOUDBEAVER_IMAGE}:${CLOUDBEAVER_VERSION}
+          imagePullPolicy: "IfNotPresent"
+          env:
+          ports:
+          - name: cloudbeaver
+            containerPort: 8080
+          volumeMounts:
+            - name: config
+              mountPath: /opt/cloudbeaver/workspace
+      volumes:
+        - name: config
+          configMap:
+            name: cloudbeaver-config-pvc

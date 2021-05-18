@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cloudbeaver-config-pv
+  finalizers: []
+  namespace: mysql
+  labels:
+    app-name: CloudBeaver
+    version: ${CLOUDBEAVER_VERSION}
+    component: database-client-
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage-class
+  claimRef:
+    name: cloudbeaver-config-pvc
+    namespace: mysql
+  local:
+    path: ${CLOUDBEAVER_CONFIG_DIR}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - ${NODE_NAME}

@@ -41,4 +41,4 @@ envsubst < nextcloud-VirtualService.yaml | kubectl apply -f -
 
 sleep 10
 
-sudo sed -i "s/);/'check_data_directory_permissions' => false, \n);/g" $NEXTCLOUD_CONFIG_DIR/config/config.php
+sudo sed -i "s/);/'check_data_directory_permissions' => false, \n 'overwriteprotocol' => 'https', \n);/g" $NEXTCLOUD_CONFIG_DIR/config/config.php

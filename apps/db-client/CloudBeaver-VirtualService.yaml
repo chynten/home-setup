@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: cloudbeaver-vs
+  namespace: mysql
+  labels:
+    app-name: CloudBeaver
+    version: ${CLOUDBEAVER_VERSION}
+    component: database-client-
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  hosts:
+  - $CLOUDBEAVER_DOMAIN
+  gateways:
+  - cloudbeaver-gateway
+  http:
+  - route:
+    - destination:
+        host: cloudbeaver-svc.mysql.svc.cluster.local
+        port:
+          number: 8978
