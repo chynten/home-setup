@@ -14,8 +14,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 9000
-      targetPort: 80
+    - port: 8080
+      targetPort: 8080
       name: tcp
   selector:
     app-name: keycloak

@@ -21,4 +21,4 @@ spec:
     - destination:
         host: keycloak-svc.keycloak.svc.cluster.local
         port:
-          number: 9000
+          number: 8080
