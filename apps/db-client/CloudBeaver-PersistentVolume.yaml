@@ -7,7 +7,7 @@ metadata:
   labels:
     app-name: CloudBeaver
     version: ${CLOUDBEAVER_VERSION}
-    component: database-client-
+    component: database-client
     hostNetwork: "no"
     internal-service: "yes"
     managed-by: chynten
