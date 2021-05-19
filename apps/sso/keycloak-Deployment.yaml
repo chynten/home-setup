@@ -27,31 +27,11 @@ spec:
       - name: keycloak
         image: ${KEYCLOAK_IMAGE}:${KEYCLOAK_VERSION}
         imagePullPolicy: IfNotPresent
-        resources:
-          requests:
-            cpu: 100m
-            memory: "256Mi"
-          limits:
-            cpu: 500m
-            memory: "512Mi"
         env:
-        - name: DB_VENDOR
-          value: MYSQL
-        - name: DB_ADDR
-          value: mysql-svc.mysql.svc.cluster.local
-        - name: DB_DATABASE
-          value: keycloak
-        - name: DB_USER
-          value: keycloak
         - name: KEYCLOAK_USER
           value: admin
-        - name: PROXY_ADRESS_FORWARDING
+        - name: PROXY_ADDRESS_FORWARDING
           value: "true"
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: keycloak-secret
-              key: keycloak-db-password
         - name: KEYCLOAK_PASSWORD
           valueFrom:
             secretKeyRef:
