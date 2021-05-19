@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tautulli-deployment
+  namespace: plex
+  labels:
+    app-name: tautulli
+    version: "${TAUTULLI_VERSION}"
+    component: plex-analysis-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: tautulli
+  template:
+    metadata:
+      labels:
+        app-name: tautulli
+    spec:
+      securityContext:
+        {}
+      containers:
+        - name: tautulli
+          securityContext:
+            {}
+          image: ${TAUTULLI_IMAGE}:${TAUTULLI_VERSION}
+          imagePullPolicy: IfNotPresent
+          ports:
+          - name: tautulli
+            protocol: TCP
+            containerPort: 8181
+          env:
+          - name: PUID
+            value: "1000"
+          - name: PGID
+            value: "1000"
+          - name: TZ
+            value: UTC
+          volumeMounts:
+          - name: config
+            mountPath: /config
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: tautulli-config-pvc

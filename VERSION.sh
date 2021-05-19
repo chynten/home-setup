@@ -25,3 +25,6 @@ export KEYCLOAK_VERSION=13.0.0
 
 export CLOUDBEAVER_IMAGE=dbeaver/cloudbeaver
 export CLOUDBEAVER_VERSION=21.0.0
+
+export TAUTULLI_IMAGE=ghcr.io/linuxserver/tautulli
+export TAUTULLI_VERSION=version-v2.7.2

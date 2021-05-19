@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: tautulli-vs
+  namespace: plex
+  labels:
+    app-name: tautulli
+    version: "${TAUTULLI_VERSION}"
+    component: plex-analysis-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  hosts:
+  - "$TAUTULLI_DOMAIN"
+  gateways:
+  - tautulli-gateway
+  http:
+  - route:
+    - destination:
+        host: tautulli-svc.plex.svc.cluster.local
+        port:
+          number: 8181

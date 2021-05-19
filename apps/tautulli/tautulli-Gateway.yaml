@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: tautulli-gateway
+  namespace: plex
+  labels:
+    app-name: tautulli
+    version: "${TAUTULLI_VERSION}"
+    component: plex-analysis-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - $TAUTULLI_DOMAIN
+    tls:
+      httpsRedirect: true
+  - hosts:
+      - $TAUTULLI_DOMAIN
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: tautulli-letsencrypt-certificate
+
