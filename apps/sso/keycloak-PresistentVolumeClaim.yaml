@@ -17,3 +17,4 @@ spec:
   resources:
     requests:
       storage: "5Gi"
+  volumeName: "keycloak-data-pv"

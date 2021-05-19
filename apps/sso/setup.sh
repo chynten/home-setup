@@ -20,8 +20,8 @@ envsubst < keycloak-Gateway.yaml | kubectl apply -f -
 
 envsubst < keycloak-Secret.yaml | kubectl apply -f -
 
-envsubst < plex-PersistentVolume.yaml | kubectl apply -f -
-envsubst < plex-PresistentVolumeClaim.yaml | kubectl apply -f -
+envsubst < keycloak-PersistentVolume.yaml | kubectl apply -f -
+envsubst < keycloak-PresistentVolumeClaim.yaml | kubectl apply -f -
 
 envsubst < keycloak-Deployment.yaml | kubectl apply -f -
 

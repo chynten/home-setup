@@ -14,7 +14,7 @@ metadata:
     created-by: chynten
 spec:
   capacity:
-    storage: 2Ti
+    storage: 5Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
