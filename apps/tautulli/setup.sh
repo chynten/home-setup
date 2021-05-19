@@ -6,6 +6,9 @@ echo "---> setting up Tautulli"
 read -p "Tautulli domain name: " TAUTULLI_DOMAIN
 read -p "Tautulli config Dir: " TAUTULLI_CONFIG_DIR
 
+export TAUTULLI_DOMAIN=$TAUTULLI_DOMAIN
+export TAUTULLI_CONFIG_DIR=$TAUTULLI_CONFIG_DIR
+
 sudo mkdir -p $TAUTULLI_CONFIG_DIR
 sudo chmod 777 $TAUTULLI_CONFIG_DIR
 
