@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: keycloak-data-pvc
+  namespace: keycloak
+  labels:
+    app-name: keycloak
+    version: "${KEYCLOAK_VERSION}"
+    component: sso-server
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  accessModes:
+  - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "5Gi"

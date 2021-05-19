@@ -37,9 +37,16 @@ spec:
             secretKeyRef:
               name: keycloak-secret
               key: keycloak-password
+        volumeMounts:
+          - name: data
+            mountPath: /opt/jboss/keycloak/standalone/data
         ports:
         - name: http
           containerPort: 8080
           protocol: TCP
       securityContext:
         fsGroup: 33
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: keycloak-data-pvc
