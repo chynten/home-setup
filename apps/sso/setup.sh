@@ -10,6 +10,8 @@ export KEYCLOAK_DOMAIN=$KEYCLOAK_DOMAIN
 export KEYCLOAK_PASSWORD=`echo -n $KEYCLOAK_PASSWORD | base64 -w 0`
 export KEYCLOAK_DATA_DIR=$KEYCLOAK_DATA_DIR
 
+sudo mkdir -p $KEYCLOAK_DATA_DIR
+sudo chmod 777 $KEYCLOAK_DATA_DIR
 
 envsubst < keycloak-Namespace.yaml | kubectl apply -f -
 
