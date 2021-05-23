@@ -26,8 +26,8 @@ export KEYCLOAK_VERSION=13.0.0
 export CLOUDBEAVER_IMAGE=dbeaver/cloudbeaver
 export CLOUDBEAVER_VERSION=21.0.2
 
-export TAUTULLI_IMAGE=linuxserver/tautulli
-export TAUTULLI_VERSION=version-v2.7.3
+export TAUTULLI_IMAGE=tautulli/tautulli
+export TAUTULLI_VERSION=v2.7.3
 
 export AVAHI_IMAGE=solidnerd/avahi
 export AVAHI_VERSION=0.7
