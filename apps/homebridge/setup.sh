@@ -3,8 +3,7 @@
 . ../../VERSION.sh
 
 read -p "Homebridge Domain: " HOMEBRIDGE_DOMAIN
-
-read -p "Homebridge data directory: " $HOMEBRIDGE_DATA_DIR
+read -p "Homebridge data directory: " HOMEBRIDGE_DATA_DIR
 
 export HOMEBRIDGE_DOMAIN=$HOMEBRIDGE_DOMAIN
 export HOMEBRIDGE_DATA_DIR=$HOMEBRIDGE_DATA_DIR
