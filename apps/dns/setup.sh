@@ -15,6 +15,9 @@ sudo mkdir -p $ADGUARD_DATA_DIR
 
 envsubst < adguard-namespace.yaml | kubectl apply -f -
 
+envsubst < adguard-Gateway.yaml | kubectl apply -f -
+envsubst < adguard-Certificate.yaml | kubectl apply -f -
+
 envsubst < adguard-PersistentVolume.yaml | kubectl apply -f -
 envsubst < adguard-PersistentVolumeClaim.yaml | kubectl apply -f -
 
