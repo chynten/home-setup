@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-deployment
+  namespace: blog
+  labels:
+    app-name: wordpress
+    version: ${WORDPRESS_VERSION}
+    component: blog-servre
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  selector:
+    matchLabels:
+      app-name: wordpress
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app-name: wordpress
+    spec:
+      containers:
+        - image: ${WORDPRESS_IMAGE}:${WORDPRESS_VERSION}
+          name: wordpress
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: mysql-svc.mysql.svc.cluster.local
+            - name: WORDPRESS_DB_USER
+              value: wordpress
+            - name: WORDPRESS_DB_NAME
+              value: wordpress
+            - name: WORDPRESS_TABLE_PREFIX
+              value: "wp_"
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wordpress-secret
+                  key: WORDPRESS_DB_PASSWORD
+          ports:
+            - containerPort: 80
+              name: wordpress
+          volumeMounts:
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html
+      volumes:
+        - name: wordpress-persistent-storage
+          persistentVolumeClaim:
+            claimName: wordpress-data-pvc

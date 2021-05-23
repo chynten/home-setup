@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: blog
+  labels:
+    istio-injection: enabled
+    app-name: wordpress
+    version: ${WORDPRESS_VERSION}
+    component: blog-servre
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten

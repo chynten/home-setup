@@ -40,3 +40,6 @@ export DNS_VERSION=v0.106.3
 
 export HOMEBRIDGE_IMAGE=oznu/homebridge
 export HOMEBRIDGE_VERSION=ubuntu
+
+export WORDPRESS_IMAGE=wordpress
+export WORDPRESS_VERSION=5.7-apache

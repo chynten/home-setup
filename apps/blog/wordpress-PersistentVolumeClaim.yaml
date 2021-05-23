@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-data-pvc
+  namespace: blog
+  labels:
+    app-name: wordpress
+    version: ${WORDPRESS_VERSION}
+    component: blog-servre
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 20Gi
+  volumeName: "wordpress-data-pv"
