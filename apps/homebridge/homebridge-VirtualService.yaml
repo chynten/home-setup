@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: homebridge-vs
+  namespace: homebridge
+  labels:
+    app-name: homebridge
+    version: "${HOMEBRIDGE_VERSION}"
+    component: home-automation-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  hosts:
+  - "$HOMEBRIDGE_DOMAIN"
+  gateways:
+  - homebridge-gateway
+  http:
+  - route:
+    - destination:
+        host: homebridge-svc.homebridge.svc.cluster.local
+        port:
+          number: 8581

@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: homebridge-certificate
+  namespace: istio-system
+  labels:
+    app-name: homebridge
+    version: "${HOMEBRIDGE_VERSION}"
+    component: home-automation-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  dnsNames:
+    - '$HOMEBRIDGE_DOMAIN'
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  secretName: homebridge-letsencrypt-certificate

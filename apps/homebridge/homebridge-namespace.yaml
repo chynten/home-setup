@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: homebridge
+  labels:
+    istio-injection: enabled
+    app-name: homebridge
+    version: "${HOMEBRIDGE_VERSION}"
+    component: home-automation-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten

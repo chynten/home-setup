@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: homebridge-gateway
+  namespace: homebridge
+  labels:
+    app-name: homebridge
+    version: "${HOMEBRIDGE_VERSION}"
+    component: home-automation-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - $HOMEBRIDGE_DOMAIN
+    tls:
+      httpsRedirect: true
+  - hosts:
+      - $HOMEBRIDGE_DOMAIN
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: homebridge-letsencrypt-certificate
+

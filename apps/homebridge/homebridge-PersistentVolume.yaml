@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: homebridge-data-pv
+  finalizers: null
+  namespace: homebridge
+  labels:
+    app-name: homebridge
+    version: "${HOMEBRIDGE_VERSION}"
+    component: home-automation-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  capacity:
+    storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage-class
+  claimRef:
+    name: homebridge-data-claim
+    namespace: homebridge
+  local:
+    path: $HOMEBRIDGE_DATA_DIR
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - $NODE_NAME

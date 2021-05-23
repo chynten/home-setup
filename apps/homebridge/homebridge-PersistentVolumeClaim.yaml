@@ -1,0 +1,22 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: homebridge-data-claim
+  finalizers: null
+  namespace: homebridge
+  labels:
+    app-name: homebridge
+    version: "${HOMEBRIDGE_VERSION}"
+    component: home-automation-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: "homebridge-data-pv"

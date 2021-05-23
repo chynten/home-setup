@@ -37,3 +37,6 @@ export SAMBA_VERSION=amd64
 
 export DNS_IMAGE=adguard/adguardhome
 export DNS_VERSION=v0.106.3
+
+export HOMEBRIDGE_IMAGE=oznu/homebridge
+export HOMEBRIDGE_VERSION=ubuntu

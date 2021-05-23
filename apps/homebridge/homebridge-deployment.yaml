@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homebridge-deployment
+  namespace: homebridge
+  labels:
+    app-name: homebridge
+    version: "${HOMEBRIDGE_VERSION}"
+    component: home-automation-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: homebridge
+  template:
+    metadata:
+      labels:
+        app-name: homebridge
+    spec:
+      hostNetwork: true
+      containers:
+      - name: homebridge
+        image: "${HOMEBRIDGE_IMAGE}:${HOMEBRIDGE_VERSION}"
+        imagePullPolicy: Always
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: HOMEBRIDGE_CONFIG_UI
+          value: "1"
+        - name: HOMEBRIDGE_CONFIG_UI_PORT
+          value: "8581"
+        - name: TZ
+          value: "UTC"
+        ports:
+        - name: http
+          containerPort: 8581
+          protocol: TCP
+        volumeMounts:
+        - name: homebridge-data
+          mountPath: /homebridge
+      volumes:
+      - name: homebridge-data
+        persistentVolumeClaim:
+          claimName: homebridge-data-claim
