@@ -4,9 +4,17 @@
 
 echo "---> setting up wordpress"
 
+read -p "MySQL root password: " ROOT_PASSWORD
 read -p "Wordpress DB Password: " DB_PASSWORD
 read -p "Wordpress Data Dir: " WORDPRESS_DATA_DIR
-read -p "Wordpress domain name: " $WORDPRESS_DOMAIN
+read -p "Wordpress domain name: " WORDPRESS_DOMAIN
+
+kubectl exec --stdin --tty mysql-statefuleset-0 -n mysql -- mysql -u root -p$ROOT_PASSWORD <<EOF
+    CREATE DATABASE IF NOT EXISTS wordpress;
+    CREATE USER IF NOT EXISTS 'wordpress'@'%' IDENTIFIED WITH mysql_native_password by '${DB_PASSWORD}';
+    GRANT ALL privileges ON wordpress.* TO 'wordpress'@'%';
+    FLUSH PRIVILEGES;
+EOF
 
 sudo mkdir -p $WORDPRESS_DATA_DIR
 
