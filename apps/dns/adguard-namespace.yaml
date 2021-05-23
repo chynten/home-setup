@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: dns
+  labels:
+    istio-injection: enabled
+    app-name: adguard
+    version: "${ADGUARD_VERSION}"
+    component: dns-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten

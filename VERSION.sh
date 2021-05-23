@@ -34,3 +34,6 @@ export AVAHI_VERSION=0.7
 
 export SAMBA_IMAGE=dperson/samba
 export SAMBA_VERSION=amd64
+
+export DNS_IMAGE=adguard/adguardhome
+export DNS_VERSION=v0.106.0-b.1

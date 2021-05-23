@@ -1,0 +1,45 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: adguard-conf-claim
+  finalizers: null
+  namespace: dns
+  labels:
+    app-name: adguard
+    version: "${ADGUARD_VERSION}"
+    component: dns-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: "adguard-conf-pv"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: adguard-data-claim
+  finalizers: null
+  namespace: dns
+  labels:
+    app-name: adguard
+    version: "${ADGUARD_VERSION}"
+    component: dns-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: "adguard-data-pv"

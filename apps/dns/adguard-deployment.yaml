@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adguard-deployment
+  namespace: dns
+  labels:
+    app-name: adguard
+    version: "${ADGUARD_VERSION}"
+    component: dns-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: adguard
+  template:
+    metadata:
+      labels:
+        app-name: adguard
+    spec:
+      hostNetwork: true
+      containers:
+      - name: adguard
+        image: "${DNS_IMAGE}:${DNS_VERSION}"
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: "UTC"
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+        - name: dhcp-67
+          containerPort: 67
+          protocol: UDP
+        - name: dhcp-68-http
+          containerPort: 68
+          protocol: TCP
+        - name: dhcp-68-udp
+          containerPort: 68
+          protocol: UDP
+        - name: dhcp-853
+          containerPort: 853
+          protocol: TCP
+        - name: dhcp-784-udp
+          containerPort: 784
+          protocol: UDP
+        - name: dhcp-5443-udp
+          containerPort: 5443
+          protocol: UDP
+        - name: dhcp-5443
+          containerPort: 5443
+          protocol: TCP
+        volumeMounts:
+        - name: adguard-data
+          mountPath: /opt/adguardhome/work
+        - name: adguard-conf
+          mountPath: /opt/adguardhome/conf
+      volumes:
+      - name: adguard-conf
+        persistentVolumeClaim:
+          claimName: adguard-conf-claim
+      - name: adguard-data
+        persistentVolumeClaim:
+          claimName: adguard-data-claim

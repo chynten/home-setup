@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: adguard-vs
+  namespace: dns
+  labels:
+    app-name: adguard
+    version: "${ADGUARD_VERSION}"
+    component: dns-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  hosts:
+  - $ADGUARD_DOMAIN
+  gateways:
+  - adguard-gateway
+  http:
+  - route:
+    - destination:
+        host: adguard-svc.dns.svc.cluster.local
+        port:
+          number: 8010
