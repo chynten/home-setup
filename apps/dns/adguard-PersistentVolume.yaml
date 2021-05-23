@@ -32,7 +32,7 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - $NODE_NANE
+                - $NODE_NAME
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -68,4 +68,4 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - $NODE_NANE
+                - $NODE_NAME
