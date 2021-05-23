@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ../VERSION.sh
+. ../../VERSION.sh
 
 read -p "CloudBeaver Config Directory: " CLOUDBEAVER_CONFIG_DIR
 read -p "CloudBeaver domain name: " CLOUDBEAVER_DOMAIN
