@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ../../VERSION.sh
+. ../VERSION.sh
 
 envsubst < mysql/mysql-StatefulSet.yaml | kubectl apply -f -
 
