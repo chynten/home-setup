@@ -4,7 +4,7 @@
 
 envsubst < mysql/mysql-StatefulSet.yaml | kubectl apply -f -
 
-envsubst < db-client/loudBeaver-Deployment.yaml | kubectl apply -f -
+envsubst < db-client/cloudBeaver-Deployment.yaml | kubectl apply -f -
 
 envsubst < dns/adguard-deployment.yaml | kubectl apply -f -
 
