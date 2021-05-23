@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: avahi-config-pv
+  namespace: timemachine
+  labels:
+    app-name: timemachine
+    version: "${AVAHI_VERSION}"
+    component: avahi-discovery-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage-class
+  claimRef:
+    name: avahi-config-pvc
+    namespace: timemachine
+  local:
+    path: ${TIMEMACHINE_CONFIG_DIR}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - $NODE_NAME
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: samba-data-pv
+  finalizers: null
+  namespace: timemachine
+  labels:
+    app-name: timemachine
+    version: "${AVAHI_VERSION}"
+    component: samba-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  capacity:
+    storage: 2Ti
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage-class
+  claimRef:
+    name: samba-data-pvc
+    namespace: timemachine
+  local:
+    path: ${TIMEMACHINE_DATA_DIR}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - $NODE_NAME

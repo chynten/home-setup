@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: avahi
+  namespace: timemachine
+  labels:
+    app-name: timemachine
+    version: "${AVAHI_VERSION}"
+    component: avahi-discovery-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: avahi
+  template:
+    metadata:
+      labels:
+        app-name: avahi
+    spec:
+      hostNetwork: true
+      securityContext:
+        {}
+      containers:
+        - name: avahi
+          securityContext:
+            {}
+          image: solidnerd/avahi:0.7
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+          - name: data
+            mountPath: /etc/avahi
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: avahi-config-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: samba
+  namespace: timemachine
+  labels:
+    app-name: timemachine
+    version: "${AVAHI_VERSION}"
+    component: samba-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: samba
+  template:
+    metadata:
+      labels:
+        app-name: samba
+    spec:
+      hostNetwork: true
+      containers:
+        - name: samba
+          image: dperson/samba:amd64
+          args: ["-s", "AirBackupDisk;/backup;yes;no", "-u", "$SAMBA_USER_NAME;$SAMBA_PASS"]
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: "UTC"
+            - name: SAMBA_USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: samba-secret
+                  key: SAMBA_USER_NAME
+            - name: SAMBA_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: samba-secret
+                  key: SAMBA_PASS
+          volumeMounts:
+            - name: data
+              mountPath: /backup
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: samba-data-pvc

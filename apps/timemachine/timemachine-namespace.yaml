@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: timemachine
+  labels:
+    istio-injection: enabled
+    app-name: avahi
+    version: "${AVAHI_VERSION}"
+    component: timemachine-backup-server
+    hostNetwork: "yes"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
