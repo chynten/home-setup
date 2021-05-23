@@ -22,7 +22,7 @@ spec:
   storageClassName: local-storage-class
   claimRef:
     name: adguard-conf-claim
-    namespace: adguard
+    namespace: dns
   local:
     path: $ADGUARD_CONFIG_DIR
   nodeAffinity:
@@ -58,7 +58,7 @@ spec:
   storageClassName: local-storage-class
   claimRef:
     name: adguard-data-claim
-    namespace: adguard
+    namespace: dns
   local:
     path: $ADGUARD_DATA_DIR
   nodeAffinity:
