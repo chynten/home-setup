@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: huginn-vs
+  namespace: agent
+  labels:
+    app-name: huginn
+    version: ${HUGINN_VERSION}
+    component: agent-to-handover-work
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  hosts:
+    - $HUGINN_DOMAIN
+  gateways:
+    - huginn-gateway
+  http:
+    - route:
+        - destination:
+            host: huginn-svc.agent.svc.cluster.local
+            port:
+              number: 3000

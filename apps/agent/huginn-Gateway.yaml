@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: huginn-gateway
+  namespace: agent
+  labels:
+    app-name: huginn
+    version: ${HUGINN_VERSION}
+    component: agent-to-handover-work
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - $HUGINN_DOMAIN
+    tls:
+      httpsRedirect: true
+  - hosts:
+      - $HUGINN_DOMAIN
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: huginn-letsencrypt-certificate
+

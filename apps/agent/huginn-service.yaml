@@ -1,0 +1,23 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: huginn-svc
+  namespace: agent
+  labels:
+    app-name: huginn
+    version: ${HUGINN_VERSION}
+    component: agent-to-handover-work
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+  selector:
+    app-name: huginn
+  type: ClusterIP
+  sessionAffinity: None

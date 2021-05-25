@@ -1,0 +1,69 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: huginn-deployment
+  namespace: agent
+  labels:
+    app-name: huginn
+    version: ${HUGINN_VERSION}
+    component: agent-to-handover-work
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app-name: huginn
+  template:
+    metadata:
+      name: huginn
+      labels:
+        app-name: huginn
+    spec:
+      containers:
+        - name: huginn
+          image: 'huginn/huginn:4d17829cf6b15b004ad3f4be196303dca4944810'
+          env:
+            - name: DATABASE_ADAPTER
+              value: mysql2
+            - name: DATABASE_HOST
+              value: mysql.mysql
+            - name: DATABASE_PORT
+              value: '3306'
+            - name: HUGINN_DATABASE_NAME
+              value: huginn
+            - name: HUGINN_DATABASE_USERNAME
+              value: huginn
+            - name: HUGINN_DATABASE_PASSWORD
+              value: huginn@321
+            - name: DO_NOT_CREATE_DATABASE
+              value: 'true'
+            - name: SMTP_DOMAIN
+              value: gmail.com
+            - name: SMTP_USER_NAME
+              value: chintanpatel.it@gmail.com
+            - name: SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: huginn-secret
+                  key: gmail-smtp-password
+            - name: SMTP_SERVER
+              value: smtp.gmail.com
+            - name: SMTP_PORT
+              value: '587'
+            - name: SMTP_AUTHENTICATION
+              value: plain
+            - name: SMTP_ENABLE_STARTTLS_AUTO
+              value: 'true'
+            - name: SMTP_SSL
+              value: 'false'
+            - name: EMAIL_FROM_ADDRESS
+              value: chintanpatel.it+huginn@gmail.com
+            - name: DEFAULT_HTTP_USER_AGENT
+              value: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+      restartPolicy: Always

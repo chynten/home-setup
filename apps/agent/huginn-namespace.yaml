@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: agent
+  labels:
+    istio-injection: enabled
+    app-name: huginn
+    version: ${HUGINN_VERSION}
+    component: agent-to-handover-work
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
