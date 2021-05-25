@@ -73,13 +73,13 @@ spec:
             - name: DEFAULT_HTTP_USER_AGENT
               value: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
           volumeMounts:
-            - name: data
+          - name: data
             mountPath: /data
           imagePullPolicy: Always
           securityContext:
             privileged: false
-        volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: huginn-data-pvc
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: huginn-data-pvc
       restartPolicy: Always
