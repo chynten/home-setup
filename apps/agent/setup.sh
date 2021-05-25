@@ -15,6 +15,7 @@ kubectl exec --stdin --tty mysql-statefuleset-0 -n mysql -- mysql -u root -p$ROO
     FLUSH PRIVILEGES;
 EOF
 
+export HUGINN_DOMAIN=$HUGINN_DOMAIN
 export HUGINN_DB_PASSWORD=`echo -n $HUGINN_DB_PASSWORD | base64 -w 0`
 export GMAIL_EMAIL=`echo -n $GMAIL_EMAIL | base64 -w 0`
 export GMAIL_SMTP_PASSWORD=`echo -n $SMTP_PASSWORD | base64 -w 0`
