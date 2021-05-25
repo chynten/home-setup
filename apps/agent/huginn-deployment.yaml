@@ -24,12 +24,12 @@ spec:
     spec:
       containers:
         - name: huginn
-          image: 'huginn/huginn:4d17829cf6b15b004ad3f4be196303dca4944810'
+          image: '${HUGINN_IMAGE}:${HUGINN_VERSION}'
           env:
             - name: DATABASE_ADAPTER
               value: mysql2
             - name: DATABASE_HOST
-              value: mysql.mysql
+              value: mysql-svc.mysql.svc.cluster.local
             - name: DATABASE_PORT
               value: '3306'
             - name: HUGINN_DATABASE_NAME

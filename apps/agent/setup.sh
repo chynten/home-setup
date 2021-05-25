@@ -2,6 +2,7 @@
 
 . ../../VERSION.sh
 
+read -p "Huginn Domain: " HUGINN_DOMAIN
 read -p "Huginn DB Password: " HUGINN_DB_PASSWORD
 read -p "Gmail email: " GMAIL_EMAIL
 read -p "Gmail SMTP Password: " SMTP_PASSWORD
