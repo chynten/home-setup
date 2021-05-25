@@ -28,6 +28,9 @@ envsubst < huginn-namespace.yaml | kubectl apply -f -
 envsubst < huginn-Certificate.yaml | kubectl apply -f -
 envsubst < huginn-Gateway.yaml | kubectl apply -f -
 
+envsubst < huginn-PersistentVolumes.yaml | kubectl apply -f -
+envsubst < huginn-PersistentVolumeClaims.yaml | kubectl apply -f -
+
 envsubst < huginn-secret.yaml | kubectl apply -f -
 
 envsubst < huginn-deployment.yaml | kubectl apply -f -
