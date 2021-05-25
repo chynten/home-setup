@@ -43,3 +43,6 @@ export HOMEBRIDGE_VERSION=ubuntu
 
 export WORDPRESS_IMAGE=wordpress
 export WORDPRESS_VERSION=5.7-apache
+
+export HUGINN_IMAGE=huginn/huginn
+export HUGINN_VERSION=4d17829cf6b15b004ad3f4be196303dca4944810

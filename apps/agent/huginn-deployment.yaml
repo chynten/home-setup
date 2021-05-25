@@ -37,13 +37,19 @@ spec:
             - name: HUGINN_DATABASE_USERNAME
               value: huginn
             - name: HUGINN_DATABASE_PASSWORD
-              value: huginn@321
+              valueFrom:
+                secretKeyRef:
+                  name: huginn-secret
+                  key: huginn-db-password
             - name: DO_NOT_CREATE_DATABASE
               value: 'true'
             - name: SMTP_DOMAIN
               value: gmail.com
             - name: SMTP_USER_NAME
-              value: chintanpatel.it@gmail.com
+              valueFrom:
+                secretKeyRef:
+                  name: huginn-secret
+                  key: gmail-email
             - name: SMTP_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -60,7 +66,10 @@ spec:
             - name: SMTP_SSL
               value: 'false'
             - name: EMAIL_FROM_ADDRESS
-              value: chintanpatel.it+huginn@gmail.com
+              valueFrom:
+                secretKeyRef:
+                  name: huginn-secret
+                  key: gmail-email
             - name: DEFAULT_HTTP_USER_AGENT
               value: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
           imagePullPolicy: Always
