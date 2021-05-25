@@ -31,4 +31,5 @@ spec:
         - matchExpressions:
             - key: kubernetes.io/hostname
               operator: In
-              values: $NODE_NAME
+              values:
+                - $NODE_NAME
