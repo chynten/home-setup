@@ -9,7 +9,7 @@ export CERT_BOT_VERSION=v1.3.1
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 export PLEX_IMAGE=plexinc/pms-docker
-export PLEX_VERSION=1.22.3.4523-d0ce30438
+export PLEX_VERSION=1.23.1.4571-6119e8eed
 
 export MYSQL_IMAGE=mysql
 export MYSQL_VERSION=8.0.25
@@ -20,8 +20,8 @@ export NEXTCLOUD_VERSION=21.0.2-apache
 export TRANSMISSION_IMAGE=linuxserver/transmission
 export TRANSMISSION_VERSION=3.00-r2-ls88
 
-export KEYCLOAK_IMAGE=quay.io/keycloak/keycloak
-export KEYCLOAK_VERSION=13.0.0
+export KEYCLOAK_IMAGE=jboss/keycloak
+export KEYCLOAK_VERSION=13.0.1
 
 export CLOUDBEAVER_IMAGE=dbeaver/cloudbeaver
 export CLOUDBEAVER_VERSION=21.0.2
@@ -42,7 +42,7 @@ export HOMEBRIDGE_IMAGE=oznu/homebridge
 export HOMEBRIDGE_VERSION=ubuntu
 
 export WORDPRESS_IMAGE=wordpress
-export WORDPRESS_VERSION=5.7-apache
+export WORDPRESS_VERSION=5.7.2-php8.0-apache
 
 export HUGINN_IMAGE=huginn/huginn
 export HUGINN_VERSION=4d17829cf6b15b004ad3f4be196303dca4944810
