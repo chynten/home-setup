@@ -1,29 +1,3 @@
-kube-state-metrics:
-  resources:
-    requests:
-      cpu: 200m
-      memory: 256Mi
-    limits:
-      cpu: 200m
-      memory: 256Mi
-clusterChecksRunner:
-  resources:
-    requests:
-      cpu: 200m
-      memory: 256Mi
-    limits:
-      cpu: 200m
-      memory: 256Mi
-agents:
-  containers:
-    agent:
-      resources:
-        requests:
-          cpu: 200m
-          memory: 256Mi
-        limits:
-          cpu: 200m
-          memory: 256Mi
 datadog:
   logs:
     enabled: true
