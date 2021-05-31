@@ -13,6 +13,24 @@ case $yn in
         ;;
 esac
 
+read -p "Do you wish to install tautulli (y/n)?" yn
+
+case $yn in
+    y )
+        cd tautulli
+        sh ./setup.sh
+        cd ..
+        ;;
+esac
+
+echo "Installing MySQL..."
+cd mysql
+sh ./setup.sh
+cd ..
+cd db-client
+sh ./setup.sh
+cd ..
+
 read -p "Do you wish to install nextcloud (y/n)?" yn
 
 case $yn in
@@ -45,6 +63,51 @@ read -p "Do you wish to install keycloak (y/n)?" yn
 case $yn in
     y )
         cd sso
+        sh ./setup.sh
+        cd ..
+        ;;
+esac
+
+read -p "Do you wish to install timemachine (y/n)?" yn
+case $yn in
+    y )
+        cd timemachine
+        sh ./setup.sh
+        cd ..
+        ;;
+esac
+
+read -p "Do you wish to install wordpress (y/n)?" yn
+case $yn in
+    y )
+        cd blog
+        sh ./setup.sh
+        cd ..
+        ;;
+esac
+
+read -p "Do you wish to install Huginn (y/n)?" yn
+case $yn in
+    y )
+        cd agent
+        sh ./setup.sh
+        cd ..
+        ;;
+esac
+
+read -p "Do you wish to install homebridge (y/n)?" yn
+case $yn in
+    y )
+        cd homebridge
+        sh ./setup.sh
+        cd ..
+        ;;
+esac
+
+read -p "Do you wish to install AdGuard Home (y/n)?" yn
+case $yn in
+    y )
+        cd dns
         sh ./setup.sh
         cd ..
         ;;
