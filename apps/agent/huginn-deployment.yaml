@@ -73,7 +73,7 @@ spec:
             - name: DEFAULT_HTTP_USER_AGENT
               value: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
             - name: ENABLE_INSECURE_AGENTS
-              value: true
+              value: 'true'
           volumeMounts:
           - name: data
             mountPath: /data
