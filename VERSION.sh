@@ -9,7 +9,7 @@ export CERT_BOT_VERSION=v1.3.1
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 export PLEX_IMAGE=plexinc/pms-docker
-export PLEX_VERSION=1.23.1.4571-6119e8eed
+export PLEX_VERSION=1.23.2.4625-a83d2d0f9
 
 export MYSQL_IMAGE=mysql
 export MYSQL_VERSION=8.0.25
@@ -36,7 +36,7 @@ export SAMBA_IMAGE=dperson/samba
 export SAMBA_VERSION=amd64
 
 export DNS_IMAGE=adguard/adguardhome
-export DNS_VERSION=v0.106.3
+export DNS_VERSION=v0.107.0-b.1
 
 export HOMEBRIDGE_IMAGE=oznu/homebridge
 export HOMEBRIDGE_VERSION=ubuntu
