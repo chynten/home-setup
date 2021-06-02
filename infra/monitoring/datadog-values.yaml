@@ -4,7 +4,7 @@ datadog:
     containerCollectAll: true
   processAgent:
     enabled: true
-    processCollection: false
+    processCollection: true
   networkMonitoring:
     enabled: true
 clusterAgent:
