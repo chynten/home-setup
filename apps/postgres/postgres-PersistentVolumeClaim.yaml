@@ -1,0 +1,22 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgres-data-pvc
+  finalizers: null
+  namespace: postgres
+  labels:
+    app-name: postgres
+    version: ${POSTGRES_VERSION}
+    component: database-server
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage-class
+  resources:
+    requests:
+      storage: 20Gi
+  volumeName: "postgres-data-pv"

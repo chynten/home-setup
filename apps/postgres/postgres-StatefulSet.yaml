@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-statefulset
+  namespace: postgres
+  labels:
+    app-name: postgres
+    version: ${POSTGRES_VERSION}
+    component: database-server
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app-name: postgres
+  serviceName: postgres
+  template:
+    metadata:
+      labels:
+        app-name: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: ${POSTGRES_IMAGE}:${POSTGRES_VERSION}
+          imagePullPolicy: "IfNotPresent"
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres-root-password
+            - name: POSTGRES_USER
+              value: postgres
+          ports:
+            - name: postgres
+              containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: postgres-data-claim

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-svc
+  namespace: postgres
+  labels:
+    app-name: postgres
+    version: ${POSTGRES_VERSION}
+    component: database-server
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: 5432
+      name: tcp
+  selector:
+    app-name: postgres

@@ -46,3 +46,6 @@ export WORDPRESS_VERSION=5.7.2-php8.0-apache
 
 export HUGINN_IMAGE=huginn/huginn
 export HUGINN_VERSION=4d17829cf6b15b004ad3f4be196303dca4944810
+
+export POSTGRES_IMAGE=postgres
+export POSTGRES_VERSION=13.3
