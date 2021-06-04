@@ -29,7 +29,7 @@ spec:
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: focalboard-config
-          mountPath: /opt/focalboard/config.json
+          mountPath: /opt/focalboard/
       volumes:
       - name: focalboard-config
         configMap:
