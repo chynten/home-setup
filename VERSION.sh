@@ -49,3 +49,6 @@ export HUGINN_VERSION=4d17829cf6b15b004ad3f4be196303dca4944810
 
 export POSTGRES_IMAGE=postgres
 export POSTGRES_VERSION=13.3
+
+export FOCALBOARD_IMAGE=mattermost/focalboard
+export FOCALBOARD_VERSION=0.6.7

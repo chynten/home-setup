@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: focalboard
+  namespace: pm
+  labels:
+    app-name: focalboard
+    version: "${FOCALBOARD_VERSION}"
+    component: project-management-tool
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: focalboard
+  template:
+    metadata:
+      labels:
+        app-name: focalboard
+    spec:
+      containers:
+      - name: focalboard
+        image: ${FOCALBOARD_IMAGE}:${FOCALBOARD_VERSION}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: focalboard-config
+          mountPath: /opt/focalboard/config.json
+      volumes:
+      - name: focalboard-config
+        configMap:
+          name: focalboard-config

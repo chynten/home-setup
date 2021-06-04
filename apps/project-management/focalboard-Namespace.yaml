@@ -1,0 +1,12 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: pm
+  labels:
+    app-name: focalboard
+    version: "${FOCALBOARD_VERSION}"
+    component: project-management-tool
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten

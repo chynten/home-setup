@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: focalboard-svc
+  namespace: pm
+  labels:
+    app-name: focalboard
+    version: "${FOCALBOARD_VERSION}"
+    component: project-management-tool
+    hostNetwork: "no"
+    internal-service: "no"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8000
+      targetPort: 8000
+      name: tcp
+  selector:
+    app-name: focalboard
