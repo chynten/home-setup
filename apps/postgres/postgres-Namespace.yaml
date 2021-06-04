@@ -3,10 +3,10 @@ apiVersion: v1
 metadata:
   name: postgres
   labels:
-    app-name: postgres
-    version: ${POSTGRES_VERSION}
-    component: database-server
+    app-name: "postgres"
+    version: "${POSTGRES_VERSION}"
+    component: "database-server"
     hostNetwork: "no"
     internal-service: "yes"
-    managed-by: chynten
-    created-by: chynten
+    managed-by: "chynten"
+    created-by: "chynten"
