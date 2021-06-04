@@ -19,3 +19,5 @@ envsubst < tautulli/tautulli-deployment.yaml | kubectl apply -f -
 envsubst < timemachine/timemachine-deployment.yaml | kubectl apply -f -
 
 envsubst < transmission/trans-deployment.yaml | kubectl apply -f -
+
+envsubst < postgres/postgres-StatefulSet.yaml | kubectl apply -f -
