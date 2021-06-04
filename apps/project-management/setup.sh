@@ -19,6 +19,8 @@ envsubst < focalboard-Namespace.yaml | kubectl apply -f -
 envsubst < focalboard-Certificate.yaml | kubectl apply -f -
 envsubst < focalboard-Gateway.yaml | kubectl apply -f -
 
+envsubst < focalboard-ConfigMap.yaml | kubectl apply -f -
+
 envsubst < focalboard-Deployment.yaml | kubectl apply -f -
 
 envsubst < focalboard-Service.yaml | kubectl apply -f -
