@@ -42,6 +42,26 @@ spec:
         volumeMounts:
           - name: data
             mountPath: /opt/jboss/keycloak/standalone/data
+        readinessProbe:
+          httpGet:
+            path: /auth/realms/home
+            port: 8080
+            scheme: HTTP
+          periodSeconds: 60
+        livenessProbe:
+          httpGet:
+            path: /auth/realms/home
+            port: 8080
+            scheme: HTTP
+          periodSeconds: 60
+        startupProbe:
+          httpGet:
+            path: /auth/realms/home
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          failureThreshold: 5
+          periodSeconds: 10
         ports:
         - name: http
           containerPort: 8080

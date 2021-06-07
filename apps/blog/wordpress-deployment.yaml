@@ -45,6 +45,26 @@ spec:
           volumeMounts:
             - name: wordpress-persistent-storage
               mountPath: /var/www/html
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            periodSeconds: 60
+            livenessProbe:
+              httpGet:
+                path: /
+                port: 80
+                scheme: HTTP
+              periodSeconds: 60
+            startupProbe:
+              httpGet:
+                path: /
+                port: 80
+                scheme: HTTP
+              initialDelaySeconds: 30
+              failureThreshold: 5
+              periodSeconds: 10
       volumes:
         - name: wordpress-persistent-storage
           persistentVolumeClaim:

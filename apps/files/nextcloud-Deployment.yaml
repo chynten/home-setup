@@ -45,13 +45,42 @@ spec:
           value: /data
         ports:
         - name: http
-          containerPort: 443
+          containerPort: 80
           protocol: TCP
         volumeMounts:
         - name: nextcloud-www
           mountPath: /var/www/html
         - name: nextcloud-data
           mountPath: /data
+        readinessProbe:
+          httpGet:
+            httpHeaders:
+              - name: Host
+                value: 127.0.0.1
+            path: /status.php
+            port: 80
+            scheme: HTTP
+          periodSeconds: 60
+        livenessProbe:
+          httpGet:
+            httpHeaders:
+              - name: Host
+                value: 127.0.0.1
+            path: /status.php
+            port: 80
+            scheme: HTTP
+          periodSeconds: 60
+        startupProbe:
+          httpGet:
+            httpHeaders:
+              - name: Host
+                value: 127.0.0.1
+            path: /status.php
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 30
+          failureThreshold: 5
+          periodSeconds: 10
       volumes:
       - name: nextcloud-www
         persistentVolumeClaim:

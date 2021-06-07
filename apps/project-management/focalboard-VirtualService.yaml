@@ -19,6 +19,6 @@ spec:
   http:
   - route:
     - destination:
-        host: focalboard-svc.nextcloud.svc.cluster.local
+        host: focalboard-svc.pm.svc.cluster.local
         port:
           number: 8000
