@@ -18,7 +18,7 @@ export NEXTCLOUD_IMAGE=nextcloud
 export NEXTCLOUD_VERSION=21.0.2-apache
 
 export TRANSMISSION_IMAGE=linuxserver/transmission
-export TRANSMISSION_VERSION=3.00-r2-ls88
+export TRANSMISSION_VERSION=3.00-r2-ls89
 
 export KEYCLOAK_IMAGE=jboss/keycloak
 export KEYCLOAK_VERSION=13.0.1
