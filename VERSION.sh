@@ -9,7 +9,7 @@ export CERT_BOT_VERSION=v1.3.1
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 export PLEX_IMAGE=plexinc/pms-docker
-export PLEX_VERSION=1.23.2.4625-a83d2d0f9
+export PLEX_VERSION=1.23.2.4656-85f0adf5b
 
 export MYSQL_IMAGE=mysql
 export MYSQL_VERSION=8.0.25
