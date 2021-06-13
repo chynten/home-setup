@@ -9,13 +9,13 @@ export DATADOG_MYSQL_PASSWORD=$DATADOG_MYSQL_PASSWORD
 helm repo add datadog https://helm.datadoghq.com
 helm repo add stable https://charts.helm.sh/stable
 helm repo update
-kubectl create namespace monitoring
-kubectl label namespace monitoring istio-injection=enabled
-envsubst < datadog-values.yaml | helm upgrade datadog --install --namespace monitoring --set datadog.site='datadoghq.eu' --set datadog.apiKey=$DATADOG_API_KEY datadog/datadog -f -
+kubectl create namespace datadog
+kubectl label namespace datadog istio-injection=enabled
+envsubst < datadog-values.yaml | helm upgrade datadog --install --namespace datadog --set datadog.site='datadoghq.eu' --set datadog.apiKey=$DATADOG_API_KEY datadog/datadog -f -
 
-kubectl label namespaces monitoring version=$(kubectl get daemonset datadog -n monitoring -o go-template=$'{{index .metadata.labels "helm.sh/chart"}}')
-kubectl label namespaces monitoring component='monitoring'
-kubectl label namespaces monitoring hostNetwork='no'
-kubectl label namespaces monitoring internal-service='yes'
-kubectl label namespaces monitoring managed-by='chynten'
-kubectl label namespaces monitoring created-by='chynten'
+kubectl label namespaces datadog version=$(kubectl get daemonset datadog -n datadog -o go-template=$'{{index .metadata.labels "helm.sh/chart"}}')
+kubectl label namespaces datadog component='monitoring'
+kubectl label namespaces datadog hostNetwork='no'
+kubectl label namespaces datadog internal-service='yes'
+kubectl label namespaces datadog managed-by='chynten'
+kubectl label namespaces datadog created-by='chynten'
