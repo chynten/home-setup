@@ -18,13 +18,13 @@ export NEXTCLOUD_IMAGE=nextcloud
 export NEXTCLOUD_VERSION=21.0.2-apache
 
 export TRANSMISSION_IMAGE=linuxserver/transmission
-export TRANSMISSION_VERSION=3.00-r2-ls89
+export TRANSMISSION_VERSION=3.00-r2-ls91
 
 export KEYCLOAK_IMAGE=jboss/keycloak
-export KEYCLOAK_VERSION=13.0.1
+export KEYCLOAK_VERSION=14.0.0
 
 export CLOUDBEAVER_IMAGE=dbeaver/cloudbeaver
-export CLOUDBEAVER_VERSION=21.0.2
+export CLOUDBEAVER_VERSION=21.0.3
 
 export TAUTULLI_IMAGE=tautulli/tautulli
 export TAUTULLI_VERSION=v2.7.3
@@ -36,7 +36,7 @@ export SAMBA_IMAGE=dperson/samba
 export SAMBA_VERSION=amd64
 
 export DNS_IMAGE=adguard/adguardhome
-export DNS_VERSION=v0.107.0-b.1
+export DNS_VERSION=v0.107.0-b.2
 
 export HOMEBRIDGE_IMAGE=oznu/homebridge
 export HOMEBRIDGE_VERSION=ubuntu
