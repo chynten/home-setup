@@ -52,3 +52,6 @@ export POSTGRES_VERSION=13.3
 
 export FOCALBOARD_IMAGE=mattermost/focalboard
 export FOCALBOARD_VERSION=0.6.7
+
+export WIKIJS_IMAGE=requarks/wiki
+export WIKIJS_VERSION=2.5.201

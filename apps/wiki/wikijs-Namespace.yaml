@@ -1,7 +1,7 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: wikijs
+  name: wiki
   labels:
     app-name: wikijs
     version: "${WIKIJS_VERSION}"
