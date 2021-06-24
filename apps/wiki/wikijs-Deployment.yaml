@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wikijs
+  namespace: wiki
+  labels:
+    app-name: wikijs
+    version: "${WIKIJS_VERSION}"
+    component: project-management-tool
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app-name: wikijs
+  template:
+    metadata:
+      labels:
+        app-name: wikijs
+    spec:
+      containers:
+      - name: wikijs
+        image: ${WIKIJS_IMAGE}:${WIKIJS_VERSION}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: wikijs-config
+          mountPath: /wiki/config.yml
+          subPath: config.yml
+      volumes:
+      - name: wikijs-config
+        configMap:
+          name: wikijs-config

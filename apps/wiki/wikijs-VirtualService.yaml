@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: wikijs-vs
+  namespace: wiki
+  labels:
+    app-name: wikijs
+    version: "${WIKIJS_VERSION}"
+    component: project-management-tool
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  hosts:
+  - "${WIKIJS_DOMAIN}"
+  gateways:
+  - wikijs-gateway
+  http:
+  - route:
+    - destination:
+        host: wikijs-svc.pm.svc.cluster.local
+        port:
+          number: 3000

@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: wikijs-gateway
+  namespace: wiki
+  labels:
+    app-name: wikijs
+    version: "${WIKIJS_VERSION}"
+    component: project-management-tool
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - $WIKIJS_DOMAIN
+    tls:
+      httpsRedirect: true
+  - hosts:
+      - $WIKIJS_DOMAIN
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: wikijs-letsencrypt-certificate
+

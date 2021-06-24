@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: wikijs-certificate
+  namespace: istio-system
+  labels:
+    app-name: wikijs
+    version: "${WIKIJS_VERSION}"
+    component: project-management-tool
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+spec:
+  dnsNames:
+    - '$WIKIJS_DOMAIN'
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  secretName: wikijs-letsencrypt-certificate

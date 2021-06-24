@@ -1,0 +1,12 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: wikijs
+  labels:
+    app-name: wikijs
+    version: "${WIKIJS_VERSION}"
+    component: project-management-tool
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten

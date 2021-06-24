@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wikijs-config
+  namespace: wiki
+  labels:
+    app-name: wikijs
+    version: "${WIKIJS_VERSION}"
+    component: project-management-tool
+    hostNetwork: "no"
+    internal-service: "yes"
+    managed-by: chynten
+    created-by: chynten
+data:
+  config.yaml: |-
+    db:
+      type: mysql
+      host: mysql-svc.mysql.svc.cluster.local
+      port: 3306
+      user: wikijs
+      pass: $WIKIJS_PASSWORD
+      db: wikijs
+    dataPath: ./data
