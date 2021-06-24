@@ -29,8 +29,8 @@ spec:
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: wikijs-config
-          mountPath: /wiki/config.yml
-          subPath: config.yml
+          mountPath: /wiki/config.yaml
+          subPath: config.yaml
       volumes:
       - name: wikijs-config
         configMap:
