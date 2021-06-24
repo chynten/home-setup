@@ -29,14 +29,14 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: DB_TYPE
-          value: mysql
+          value: "mysql"
         - name: DB_HOST
-          value: mysql-svc.mysql.svc.cluster.local
+          value: "mysql-svc.mysql.svc.cluster.local"
         - name: DB_PORT
-          value: 3306
+          value: "3306"
         - name: DB_USER
-          value: wikijs
+          value: "wikijs"
         - name: DB_PASS
-          value: $WIKIJS_PASSWORD
+          value: "$WIKIJS_PASSWORD"
         - name: DB_NAME
-          value: wikijs
+          value: "wikijs"
