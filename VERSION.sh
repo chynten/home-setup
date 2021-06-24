@@ -54,4 +54,4 @@ export FOCALBOARD_IMAGE=mattermost/focalboard
 export FOCALBOARD_VERSION=0.6.7
 
 export WIKIJS_IMAGE=requarks/wiki
-export WIKIJS_VERSION=canary-2.5.206
+export WIKIJS_VERSION=2.5.201
