@@ -27,11 +27,16 @@ spec:
       - name: wikijs
         image: ${WIKIJS_IMAGE}:${WIKIJS_VERSION}
         imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - name: wikijs-config
-          mountPath: /wiki/config.yaml
-          subPath: config.yaml
-      volumes:
-      - name: wikijs-config
-        configMap:
-          name: wikijs-config
+        env:
+        - name: DB_TYPE
+          value: mysql
+        - name: DB_HOST
+          value: mysql-svc.mysql.svc.cluster.local
+        - name: DB_PORT
+          value: 3306
+        - name: DB_USER
+          value: wikijs
+        - name: DB_PASS
+          value: $WIKIJS_PASSWORD
+        - name: DB_NAME
+          value: wikijs
