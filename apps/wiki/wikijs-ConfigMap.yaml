@@ -13,11 +13,11 @@ metadata:
     created-by: chynten
 data:
   config.yaml: |-
-  db:
-    type: mysql
-    host: mysql-svc.mysql.svc.cluster.local
-    port: 3306
-    user: wikijs
-    pass: $WIKIJS_PASSWORD
-    db: wikijs
-  dataPath: ./data
+    db:
+      type: mysql
+      host: mysql-svc.mysql.svc.cluster.local
+      port: 3306
+      user: wikijs
+      pass: $WIKIJS_PASSWORD
+      db: wikijs
+    dataPath: ./data
