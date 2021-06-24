@@ -19,6 +19,6 @@ spec:
   http:
   - route:
     - destination:
-        host: wikijs-svc.pm.svc.cluster.local
+        host: wikijs-svc.wiki.svc.cluster.local
         port:
           number: 3000
