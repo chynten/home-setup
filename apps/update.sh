@@ -23,3 +23,5 @@ envsubst < transmission/trans-deployment.yaml | kubectl apply -f -
 envsubst < postgres/postgres-StatefulSet.yaml | kubectl apply -f -
 
 envsubst < project-management/focalboard-Deployment.yaml | kubectl apply -f -
+
+envsubst < wiki/wikijs-Deployment.yaml | kubectl apply -f -
