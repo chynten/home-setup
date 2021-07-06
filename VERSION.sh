@@ -15,16 +15,16 @@ export MYSQL_IMAGE=mysql
 export MYSQL_VERSION=8.0.25
 
 export NEXTCLOUD_IMAGE=nextcloud
-export NEXTCLOUD_VERSION=21.0.2-apache
+export NEXTCLOUD_VERSION=21.0.3-apache
 
 export TRANSMISSION_IMAGE=linuxserver/transmission
-export TRANSMISSION_VERSION=3.00-r2-ls91
+export TRANSMISSION_VERSION=3.00-r2-ls92
 
 export KEYCLOAK_IMAGE=jboss/keycloak
 export KEYCLOAK_VERSION=14.0.0
 
 export CLOUDBEAVER_IMAGE=dbeaver/cloudbeaver
-export CLOUDBEAVER_VERSION=21.0.3
+export CLOUDBEAVER_VERSION=21.0.5
 
 export TAUTULLI_IMAGE=tautulli/tautulli
 export TAUTULLI_VERSION=v2.7.4
@@ -36,7 +36,7 @@ export SAMBA_IMAGE=dperson/samba
 export SAMBA_VERSION=amd64
 
 export DNS_IMAGE=adguard/adguardhome
-export DNS_VERSION=v0.107.0-b.2
+export DNS_VERSION=v0.107.0-b.3
 
 export HOMEBRIDGE_IMAGE=oznu/homebridge
 export HOMEBRIDGE_VERSION=ubuntu
