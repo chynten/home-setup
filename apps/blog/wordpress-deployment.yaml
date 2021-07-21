@@ -51,20 +51,20 @@ spec:
               port: 80
               scheme: HTTP
             periodSeconds: 60
-            livenessProbe:
-              httpGet:
-                path: /
-                port: 80
-                scheme: HTTP
-              periodSeconds: 60
-            startupProbe:
-              httpGet:
-                path: /
-                port: 80
-                scheme: HTTP
-              initialDelaySeconds: 30
-              failureThreshold: 5
-              periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            periodSeconds: 60
+          startupProbe:
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 30
+            failureThreshold: 5
+            periodSeconds: 10
       volumes:
         - name: wordpress-persistent-storage
           persistentVolumeClaim:
